@@ -19,21 +19,13 @@ Vagrant.configure(2) do |config|
   
   # Install MYSQL
   config.vm.provision "shell", inline: <<-SHELL
-    # apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-    # apt-add-repository 'deb [arch=amd64,i386,ppc64el] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/ubuntu xenial main'
-    # apt-get update
-
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-    debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
-    # sudo debconf-set-selections <<< 'mariadb-server-10.1 mysql-server/root_password password root'
-    # sudo debconf-set-selections <<< 'mariadb-server-10.1 mysql-server/root_password_again password root'
+    # Variables for headless install
+    # debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password password root'
+    # debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password_again password root'
     
-    apt-get install -y mysql-server
-
-    # Fix login to be balnk
-    mysqladmin -u root -p'root' password ''
-
+    apt-get install -y mariadb-server
+    # Fix so we don't need sudo
+    mysql < /share/mariadb_sudo-fix.sql
   SHELL
 
   # Install fromthepage Deps
