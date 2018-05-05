@@ -4,6 +4,10 @@
 Vagrant.configure(2) do |config|
   
   config.vm.box = "ubuntu/xenial64"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4096
+    v.cpus = 4
+  end
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.synced_folder "../fromthepage", "/fromthepage"
   config.vm.synced_folder "../vagrant_share", "/share"
@@ -25,7 +29,7 @@ Vagrant.configure(2) do |config|
     
     apt-get install -y mariadb-server
     # Fix so we don't need sudo
-    mysql < /share/mariadb_sudo-fix.sql
+    # mysql < /share/mariadb_sudo-fix.sql
   SHELL
 
   # Install fromthepage Deps
@@ -49,5 +53,8 @@ Vagrant.configure(2) do |config|
     apt-get install -y zsh
     chsh -s `which zsh` vagrant
   SHELL
+
+  # Install GUI
+  # Setup commandline
 
 end
