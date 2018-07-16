@@ -36,7 +36,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-get install -y qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
     apt-get install -y pkg-config libmysqlclient-dev
-    apt-get install -y imagemagick libmagickwand-dev graphviz ruby-rmagick 
+    apt-get install -y imagemagick libmagickwand-dev graphviz ruby-rmagick
+    apt-get install -y xvfb
   SHELL
   
   # Install Gem and Bundler Stuff For Fromthepage
