@@ -40,12 +40,8 @@ Vagrant.configure(2) do |config|
   
   # Install Gem and Bundler Stuff For Fromthepage
   config.vm.provision "shell", inline: <<-SHELL
+    gem update --system --no-doc --no-ri
     gem install bundler --no-rdoc --no-ri
-    gem install nokogiri -v '1.8.2' --no-rdoc --no-ri
-    gem install ffi -v '1.9.23' --no-rdoc --no-ri
-    gem install rmagick -v '2.16.0' --no-rdoc --no-ri
-    gem install capybara -v '2.18.0' --no-rdoc --no-ri
-    gem install capybara-webkit -v '1.15.0' --no-rdoc --no-ri
   SHELL
   
   # Setup ZSH
