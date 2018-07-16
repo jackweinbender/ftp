@@ -5,12 +5,12 @@ Vagrant.configure(2) do |config|
   
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 6096
     v.cpus = 4
   end
   config.vm.network :forwarded_port, guest: 3000, host: 3000
-  config.vm.synced_folder "../fromthepage", "/fromthepage"
-  config.vm.synced_folder "../vagrant_share", "/share"
+  config.vm.synced_folder "../fromthepage", "/home/vagrant/fromthepage"
+  config.vm.synced_folder "share", "/home/vagrant/share"
 
   # Install Ruby 2.2.10
   config.vm.provision "shell", inline: <<-SHELL
@@ -23,13 +23,12 @@ Vagrant.configure(2) do |config|
   
   # Install MYSQL
   config.vm.provision "shell", inline: <<-SHELL
-    # Variables for headless install
-    # debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password password root'
-    # debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password_again password root'
-    
     apt-get install -y mariadb-server
+    
     # Fix so we don't need sudo
-    # mysql < /share/mariadb_sudo-fix.sql
+    mysql -uroot -e "UPDATE mysql.user SET plugin = 'mysql_native_password', Password = PASSWORD('') WHERE User = 'root';"
+    mysql -uroot -e "FLUSH PRIVILEGES;"
+
   SHELL
 
   # Install fromthepage Deps
@@ -42,19 +41,23 @@ Vagrant.configure(2) do |config|
   # Install Gem and Bundler Stuff For Fromthepage
   config.vm.provision "shell", inline: <<-SHELL
     gem install bundler --no-rdoc --no-ri
-    gem install nokogiri -v '1.8.2'
-    gem install ffi -v '1.9.23'
-    gem install rmagick -v '2.16.0'
-    gem install capybara-webkit -v '1.15.0'
+    gem install nokogiri -v '1.8.2' --no-rdoc --no-ri
+    gem install ffi -v '1.9.23' --no-rdoc --no-ri
+    gem install rmagick -v '2.16.0' --no-rdoc --no-ri
+    gem install capybara -v '2.18.0' --no-rdoc --no-ri
+    gem install capybara-webkit -v '1.15.0' --no-rdoc --no-ri
   SHELL
   
   # Setup ZSH
   config.vm.provision "shell", inline: <<-SHELL
     apt-get install -y zsh
     chsh -s `which zsh` vagrant
+    
+    # Setup commandline
+    git clone https://github.com/jackweinbender/dotfiles.git /home/vagrant/.dotfiles
+    git clone https://github.com/robbyrussell/oh-my-zsh.git /home/vagrant/.oh-my-zsh
+
+    ln -s /home/vagrant/.dotfiles/symlinks/.zshrc /home/vagrant/.zshrc 
+    ln -s /home/vagrant/.dotfiles/symlinks/jack.zsh-theme /home/vagrant/.oh-my-zsh/themes/jack.zsh-theme
   SHELL
-
-  # Install GUI
-  # Setup commandline
-
 end
