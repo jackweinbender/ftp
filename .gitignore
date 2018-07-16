@@ -2,4 +2,3 @@
 *.log
 share/*
 !share/.gitkeep
-fromthepage
