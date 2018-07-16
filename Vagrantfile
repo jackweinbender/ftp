@@ -13,13 +13,13 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder "share", "/home/vagrant/share"
   config.vm.synced_folder "scripts", "/home/vagrant/scripts"
 
-  # Install Ruby 2.2.10
+  # Install Ruby 2.3.X
   config.vm.provision "shell", inline: <<-SHELL
     apt-add-repository ppa:brightbox/ruby-ng
     apt-get update
     apt-get upgrade -y
     apt-get install -y git software-properties-common
-    apt-get install -y ruby2.2 ruby2.2-dev
+    apt-get install -y ruby2.3 ruby2.3-dev
   SHELL
   
   # Install MYSQL
