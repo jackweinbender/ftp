@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.synced_folder "../fromthepage", "/home/vagrant/fromthepage"
   config.vm.synced_folder "share", "/home/vagrant/share"
+  config.vm.synced_folder "scripts", "/home/vagrant/scripts"
 
   # Install Ruby 2.2.10
   config.vm.provision "shell", inline: <<-SHELL
