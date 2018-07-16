@@ -1,2 +1,4 @@
 .vagrant
 *.log
+share/*
+!share/.gitkeep
