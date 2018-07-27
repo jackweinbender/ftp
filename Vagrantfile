@@ -5,10 +5,11 @@ Vagrant.configure(2) do |config|
   
   config.vm.box = "ubuntu/xenial64"
   config.vm.provider "virtualbox" do |v|
-    v.memory = 8096
-    v.cpus = 4
+    v.memory = 4096
   end
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  # Required for NFS to work, pick any local IP
+  config.vm.network :private_network, ip: '192.168.50.50'
   config.vm.synced_folder "fromthepage", "/home/vagrant/fromthepage"
   config.vm.synced_folder "share", "/home/vagrant/share"
   config.vm.synced_folder "scripts", "/home/vagrant/scripts"
