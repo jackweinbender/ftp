@@ -4,7 +4,7 @@
 
 This is my development environment for FTP, as such, this repo includes fromthepage as a submodule. It may be best to push up all of your local changes, then do a recursive clone on theis repo, rather than trying to incorperate your local fromthepage repo.
 
-Note also, *the default RAM amount is about 4GB.* You might want to tweak that.
+Note also, **the default RAM amount is about 4 GB.** You might want to tweak that (the `mba` branch defaults to 1 GB)
 
 ### Requirements
 You need [Vagrant](https://www.vagrantup.com/intro/index.html) installed. That's it. I'm using vagrant with VirtualBox, but this should work on whatever setup you have.
