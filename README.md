@@ -25,4 +25,4 @@ You need [Vagrant](https://www.vagrantup.com/intro/index.html) installed. That's
 Do development as normal on your local (host) OS, including all your git stuff (pushing from the VM will fail because the VM probably doesn't have a valid ssh key for github). The VM is only for running running the rails app, console, and tests.
 
 ## Testing
-The `tests.sh` script runs the full test suite, including all the database resets, fixtures, and migrations. (run from the `fromthepage` dir, you'll need to run `./../scripts/tests.sh`
+The `tests.sh` script runs the full test suite, including all the database resets, fixtures, and migrations. (run from the `fromthepage` dir, you'll need to run `./../scripts/tests.sh`)
