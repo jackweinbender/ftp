@@ -8,6 +8,7 @@ Vagrant.configure(2) do |config|
     v.memory = 4096
   end
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 1080, host: 1080
   # Required for NFS to work, pick any local IP
   config.vm.network :private_network, ip: '192.168.50.50'
   config.vm.synced_folder "fromthepage", "/home/vagrant/fromthepage"
