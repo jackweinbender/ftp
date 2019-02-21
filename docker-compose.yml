@@ -18,8 +18,14 @@ services:
       - ./share:/share
     ports:
       - "3000:3000" # Rails Web
-      - "1080:1080" # Mailcatcher
+    links: 
+      - mailcatcher
     depends_on:
       - db
+  mailcatcher:
+    image: zolweb/docker-mailcatcher:latest
+    ports:
+      - "1025:1025" 
+      - "1080:1080"
 volumes:
   db_data: # You need to create this first! docker volume create --label db_data docker-compose run -e "RAILS_ENV=test"
