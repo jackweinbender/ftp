@@ -25,7 +25,8 @@ services:
   mailcatcher:
     image: zolweb/docker-mailcatcher:latest
     ports:
-      - "1025:1025" 
-      - "1080:1080"
+      - "1025:1025" # SMTP
+      - "1080:1080" # Webviewer
 volumes:
-  db_data: # You need to create this first! docker volume create --label db_data docker-compose run -e "RAILS_ENV=test"
+  db_data: # You need to create this first!
+           # $ docker volume create --label db_data
