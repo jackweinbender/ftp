@@ -11,6 +11,8 @@ services:
       - "db_data:/var/lib/mysql"
   web:
     build: .
+    environment:
+      RAILS_ENV: "development"
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - ./fromthepage:/fromthepage
@@ -27,6 +29,7 @@ services:
     ports:
       - "1025:1025" # SMTP
       - "1080:1080" # Webviewer
+      
 volumes:
   db_data: # You need to create this first!
            # $ docker volume create --label db_data
