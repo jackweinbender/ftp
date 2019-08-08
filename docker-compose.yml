@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-      MYSQL_DATABASE: 'development'
+      MYSQL_DATABASE: 'test'
     volumes: 
       - "db_data:/var/lib/mysql"
   web:
