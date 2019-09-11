@@ -1,0 +1,163 @@
+                                               Prefix Verb     URI Pattern                                                                                  Controller#Action
+                                                 root GET      /                                                                                            static#splash
+                                                 blog GET      /blog(.:format)                                                                              redirect(301, https://fromthepage.com/blog/)
+                                     new_user_session GET      /users/sign_in(.:format)                                                                     devise/sessions#new
+                                         user_session POST     /users/sign_in(.:format)                                                                     devise/sessions#create
+                                 destroy_user_session DELETE   /users/sign_out(.:format)                                                                    devise/sessions#destroy
+                              user_omniauth_authorize GET|POST /users/auth/:provider(.:format)                                                              users/omniauth_callbacks#passthru {:provider=>/google_oauth2|saml/}
+                               user_omniauth_callback GET|POST /users/auth/:action/callback(.:format)                                                       users/omniauth_callbacks#:action
+                                        user_password POST     /users/password(.:format)                                                                    devise/passwords#create
+                                    new_user_password GET      /users/password/new(.:format)                                                                devise/passwords#new
+                                   edit_user_password GET      /users/password/edit(.:format)                                                               devise/passwords#edit
+                                                      PATCH    /users/password(.:format)                                                                    devise/passwords#update
+                                                      PUT      /users/password(.:format)                                                                    devise/passwords#update
+                             cancel_user_registration GET      /users/cancel(.:format)                                                                      registrations#cancel
+                                    user_registration POST     /users(.:format)                                                                             registrations#create
+                                new_user_registration GET      /users/sign_up(.:format)                                                                     registrations#new
+                               edit_user_registration GET      /users/edit(.:format)                                                                        registrations#edit
+                                                      PATCH    /users(.:format)                                                                             registrations#update
+                                                      PUT      /users(.:format)                                                                             registrations#update
+                                                      DELETE   /users(.:format)                                                                             registrations#destroy
+                           back_user_masquerade_index GET      /users/masquerade/back(.:format)                                                             masquerades#back
+                                      user_masquerade GET      /users/masquerade/:id(.:format)                                                              masquerades#show
+                                      users_new_trial GET      /users/new_trial(.:format)                                                                   registrations_trial#new
+                                                image GET      /image-service/:id/:region/:size/:rotation/:quality.:format                                  riiif/images#show {:rotation=>"0", :size=>/(pct:)?[\w.,]+/, :format=>"jpg", :region=>"full", :quality=>"default", :model=>"riiif/image"}
+                                                 info GET      /image-service/:id/info.json(.:format)                                                       riiif/images#info {:format=>"json", :model=>"riiif/image"}
+                                                      GET      /image-service/:id(.:format)                                                                 riiif/images#redirect
+                                    omeka_sites_items GET      /omeka_sites/items(.:format)                                                                 omeka_sites#items
+                                          omeka_sites GET      /omeka_sites(.:format)                                                                       omeka_sites#index
+                                                      POST     /omeka_sites(.:format)                                                                       omeka_sites#create
+                                       new_omeka_site GET      /omeka_sites/new(.:format)                                                                   omeka_sites#new
+                                      edit_omeka_site GET      /omeka_sites/:id/edit(.:format)                                                              omeka_sites#edit
+                                           omeka_site GET      /omeka_sites/:id(.:format)                                                                   omeka_sites#show
+                                                      PATCH    /omeka_sites/:id(.:format)                                                                   omeka_sites#update
+                                                      PUT      /omeka_sites/:id(.:format)                                                                   omeka_sites#update
+                                                      DELETE   /omeka_sites/:id(.:format)                                                                   omeka_sites#destroy
+                                          omeka_items GET      /omeka_items(.:format)                                                                       omeka_items#index
+                                                      POST     /omeka_items(.:format)                                                                       omeka_items#create
+                                       new_omeka_item GET      /omeka_items/new(.:format)                                                                   omeka_items#new
+                                      edit_omeka_item GET      /omeka_items/:id/edit(.:format)                                                              omeka_items#edit
+                                           omeka_item GET      /omeka_items/:id(.:format)                                                                   omeka_items#show
+                                                      PATCH    /omeka_items/:id(.:format)                                                                   omeka_items#update
+                                                      PUT      /omeka_items/:id(.:format)                                                                   omeka_items#update
+                                                      DELETE   /omeka_items/:id(.:format)                                                                   omeka_items#destroy
+                                                notes GET      /notes(.:format)                                                                             notes#index
+                                                      POST     /notes(.:format)                                                                             notes#create
+                                             new_note GET      /notes/new(.:format)                                                                         notes#new
+                                            edit_note GET      /notes/:id/edit(.:format)                                                                    notes#edit
+                                                 note GET      /notes/:id(.:format)                                                                         notes#show
+                                                      PATCH    /notes/:id(.:format)                                                                         notes#update
+                                                      PUT      /notes/:id(.:format)                                                                         notes#update
+                                                      DELETE   /notes/:id(.:format)                                                                         notes#destroy
+                                                admin GET      /admin(.:format)                                                                             admin#index
+                                            dashboard GET      /dashboard(.:format)                                                                         dashboard#index
+                                      dashboard_owner GET      /dashboard/owner(.:format)                                                                   dashboard#owner
+                                  dashboard_watchlist GET      /dashboard/watchlist(.:format)                                                               dashboard#watchlist
+                                       dashboard_role GET      /dashboard_role(.:format)                                                                    dashboard#dashboard_role
+                                      guest_dashboard GET      /guest_dashboard(.:format)                                                                   dashboard#guest
+                                         landing_page GET      /findaproject(.:format)                                                                      dashboard#landing_page
+                                     collections_list GET      /collections(.:format)                                                                       dashboard#collections_list
+                                        iiif_manifest GET      /iiif/:id/manifest(.:format)                                                                 iiif#manifest
+                                                      GET      /iiif/:id/layer/:type(.:format)                                                              iiif#layer
+                                      iiif_collection GET      /iiif/collection/:collection_id(.:format)                                                    iiif#collection
+                                                      GET      /iiif/:page_id/list/:annotation_type(.:format)                                               iiif#list
+                                                      GET      /iiif/:page_id/notes(.:format)                                                               iiif#notes
+                                                      GET      /iiif/:page_id/note/:note_id(.:format)                                                       iiif#note
+                                                      GET      /iiif/:work_id/canvas/:page_id(.:format)                                                     iiif#canvas
+                                                      GET      /iiif/:work_id/status(.:format)                                                              iiif#manifest_status
+                                                      GET      /iiif/:work_id/:page_id/status(.:format)                                                     iiif#canvas_status
+                                                      GET      /iiif/:page_id/annotation/:annotation_type(.:format)                                         iiif#annotation
+                                                      GET      /iiif/:work_id/sequence/:sequence_name(.:format)                                             iiif#sequence
+                                                      GET      /iiif/for/:id(.:format)                                                                      iiif#for {:id=>/.*/}
+                                                      GET      /iiif/contributions/:domain/:terminus_a_quo/:terminus_ad_quem(.:format)                      iiif#contributions {:domain=>/.*/}
+                                                      GET      /iiif/contributions/:domain/:terminus_a_quo(.:format)                                        iiif#contributions {:domain=>/.*/}
+                                                      GET      /iiif/contributions/:domain(.:format)                                                        iiif#contributions {:domain=>/.*/}
+                                                      GET      /iiif/admin/explore/:at_id(.:format)                                                         sc_collections#explore {:at_id=>/.*/}
+                           iiif_admin_import_manifest GET      /iiif/admin/import_manifest(.:format)                                                        sc_collections#import_manifest
+                                        ZenasMatthews GET      /ZenasMatthews(.:format)                                                                     collection#show {:collection_id=>7}
+                                       JuliaBrumfield GET      /JuliaBrumfield(.:format)                                                                    collection#show {:collection_id=>1}
+                                        YaquinaLights GET      /YaquinaLights(.:format)                                                                     collection#show {:collection_id=>58}
+                                     work_update_work PATCH    /work/update_work(.:format)                                                                  work#update_work
+                        transcribe_save_transcription PATCH    /transcribe/save_transcription(.:format)                                                     transcribe#save_transcription
+                          transcribe_save_translation PATCH    /transcribe/save_translation(.:format)                                                       transcribe#save_translation
+                             article_article_category PUT      /article/article_category(.:format)                                                          article#article_category
+                                      category_update PATCH    /category/update(.:format)                                                                   category#update
+                                          user_update PATCH    /user/update(.:format)                                                                       user#update
+                                    page_block_update PATCH    /page_block/update(.:format)                                                                 page_block#update
+                                    admin_update_user PATCH    /admin/update_user(.:format)                                                                 admin#update_user
+                           admin_expunge_confirmation GET      /admin/expunge_confirmation(.:format)                                                        admin#expunge_confirmation
+                                   admin_expunge_user PATCH    /admin/expunge_user(.:format)                                                                admin#expunge_user
+                                                about GET      /software(.:format)                                                                          static#software
+                                                  faq GET      /faq(.:format)                                                                               static#faq
+                                           static_faq GET      /static/faq(.:format)                                                                        redirect(301, /faq)
+                                              privacy GET      /privacy(.:format)                                                                           static#privacy
+                                       static_privacy GET      /static/privacy(.:format)                                                                    redirect(301, /privacy)
+                                   send_contact_email POST     /contact/send(.:format)                                                                      contact#send_email
+                                              contact GET      /contact(.:format)                                                                           contact#form
+                                                      GET|POST /:controller(/:action(/:id))(.:format)                                                       :controller#:action
+                                    edit_document_set GET      /document_set/edit/:id(.:format)                                                             document_sets#edit
+                                      remove_from_set GET      /document_set/remove_from_set(.:format)                                                      document_sets#remove_from_set
+                                  create_document_set POST     /document_set/create(.:format)                                                               document_sets#create
+                            document_set_assign_works POST     /document_set/assign_works(.:format)                                                         document_sets#assign_works
+                                           add_fields POST     /transcription_field/add_fields(.:format)                                                    transcription_field#add_fields
+                        transcription_field_line_form GET      /transcription_field/line_form(.:format)                                                     transcription_field#line_form
+                                        document_sets GET      /document_sets(.:format)                                                                     document_sets#index
+                                     new_document_set GET      /document_sets/new(.:format)                                                                 document_sets#new
+                                         document_set PATCH    /document_sets/:id(.:format)                                                                 document_sets#update
+                                                      PUT      /document_sets/:id(.:format)                                                                 document_sets#update
+                                                      DELETE   /document_sets/:id(.:format)                                                                 document_sets#destroy
+                                       update_profile GET      /:user_slug/update_profile(.:format)                                                         user#update_profile
+                                collection_statistics GET      /:user_slug/:collection_id/statistics(.:format)                                              statistics#collection
+                                  collection_settings GET      /:user_slug/:collection_id/settings(.:format)                                                document_sets#settings
+                                  collection_subjects GET      /:user_slug/:collection_id/subjects(.:format)                                                article#list
+                                    collection_export GET      /:user_slug/:collection_id/export(.:format)                                                  export#index
+                               collection_edit_fields GET      /:user_slug/:collection_id/edit_fields(.:format)                                             transcription_field#edit_fields
+                                      edit_collection GET      /:user_slug/:id/edit(.:format)                                                               collection#edit
+                                  new_work_collection GET      /:user_slug/:id/new_work(.:format)                                                           collection#new_work
+                              contributors_collection GET      /:user_slug/:id/collaborators(.:format)                                                      collection#contributors
+                                collection_works_list GET      /:user_slug/:collection_id/works_list(.:format)                                              collection#works_list
+                       collection_needs_transcription GET      /:user_slug/:collection_id/needs_transcription(.:format)                                     collection#needs_transcription_pages
+                              collection_needs_review GET      /:user_slug/:collection_id/needs_review(.:format)                                            collection#needs_review_pages
+                        collection_start_transcribing GET      /:user_slug/:collection_id/start_transcribing(.:format)                                      collection#start_transcribing
+                                 collection_read_work GET|POST /:user_slug/:collection_id/:work_id(.:format)                                                display#read_work
+                             versions_collection_work GET      /:user_slug/:collection_id/:work_id/versions(.:format)                                       work#versions
+                                print_collection_work GET      /:user_slug/:collection_id/:work_id/print(.:format)                                          work#print
+                                pages_collection_work GET      /:user_slug/:collection_id/:work_id/pages(.:format)                                          work#pages_tab
+                               update_collection_work PATCH    /:user_slug/:collection_id/:work_id/update_work(.:format)                                    work#update_work
+                           add_scribe_collection_work POST     /:user_slug/:collection_id/:work_id/add_scribe(.:format)                                     work#add_scribe
+                        remove_scribe_collection_work GET      /:user_slug/:collection_id/:work_id/remove_scribe(.:format)                                  work#remove_scribe
+                                 edit_collection_work GET      /:user_slug/:collection_id/:work_id/edit(.:format)                                           work#edit
+                                collection_work_about GET      /:user_slug/:collection_id/:work_id/about(.:format)                                          work#show {:param=>:work_id}
+                             collection_work_contents GET      /:user_slug/:collection_id/:work_id/contents(.:format)                                       display#list_pages {:param=>:work_id}
+                                 collection_work_help GET      /:user_slug/:collection_id/:work_id/help(.:format)                                           static#transcribe_help {:param=>:work_id}
+          collection_work_export_plaintext_searchable GET      /:user_slug/:collection_id/:work_id/export/plaintext/searchable(.:format)                    export#work_plaintext_searchable
+            collection_work_export_plaintext_verbatim GET      /:user_slug/:collection_id/:work_id/export/plaintext/verbatim(.:format)                      export#work_plaintext_verbatim
+             collection_work_export_plaintext_emended GET      /:user_slug/:collection_id/:work_id/export/plaintext/emended(.:format)                       export#work_plaintext_emended
+collection_work_export_plaintext_translation_verbatim GET      /:user_slug/:collection_id/:work_id/export/plaintext/translation/verbatim(.:format)          export#work_plaintext_translation_verbatim
+ collection_work_export_plaintext_translation_emended GET      /:user_slug/:collection_id/:work_id/export/plaintext/translation/emended(.:format)           export#work_plaintext_translation_emended
+                              collection_display_page GET      /:user_slug/:collection_id/:work_id/display/:page_id(.:format)                               display#display_page
+                           collection_transcribe_page GET      /:user_slug/:collection_id/:work_id/transcribe/:page_id(.:format)                            transcribe#display_page
+                                collection_guest_page GET      /:user_slug/:collection_id/:work_id/guest/:page_id(.:format)                                 transcribe#guest
+                            collection_translate_page GET      /:user_slug/:collection_id/:work_id/translate/:page_id(.:format)                             transcribe#translate
+                                 collection_help_page GET      /:user_slug/:collection_id/:work_id/help/:page_id(.:format)                                  transcribe#help
+                                 collection_edit_page GET      /:user_slug/:collection_id/:work_id/edit/:page_id(.:format)                                  page#edit
+                              collection_page_version GET      /:user_slug/:collection_id/:work_id/versions/:page_id(.:format)                              page_version#list
+          collection_page_export_plaintext_searchable GET      /:user_slug/:collection_id/:work_id/export/:page_id/plaintext/searchable(.:format)           export#page_plaintext_searchable
+            collection_page_export_plaintext_verbatim GET      /:user_slug/:collection_id/:work_id/export/:page_id/plaintext/verbatim(.:format)             export#page_plaintext_verbatim
+collection_page_export_plaintext_translation_verbatim GET      /:user_slug/:collection_id/:work_id/export/:page_id/plaintext/translation/verbatim(.:format) export#page_plaintext_translation_verbatim
+             collection_page_export_plaintext_emended GET      /:user_slug/:collection_id/:work_id/export/:page_id/plaintext/emended(.:format)              export#page_plaintext_emended
+ collection_page_export_plaintext_translation_emended GET      /:user_slug/:collection_id/:work_id/export/:page_id/plaintext/translation/emended(.:format)  export#page_plaintext_translation_emended
+        collection_annotation_page_transcription_html GET      /:user_slug/:collection_id/:work_id/annotation/:page_id/html/transcription(.:format)         annotation#page_transcription_html
+          collection_annotation_page_translation_html GET      /:user_slug/:collection_id/:work_id/annotation/:page_id/html/translation(.:format)           annotation#page_translation_html
+                              collection_article_show GET|POST /:user_slug/:collection_id/article/:article_id(.:format)                                     article#show
+                              collection_article_edit GET      /:user_slug/:collection_id/article/:article_id/edit(.:format)                                article#edit
+                           collection_article_version GET      /:user_slug/:collection_id/article_version/:article_id(.:format)                             article_version#list
+                            collection_article_update PATCH    /:user_slug/:collection_id/article/update/:article_id(.:format)                              article#update
+                                           collection GET      /:user_slug/:id(.:format)                                                                    collection#show
+                                         user_profile GET      /:user_id(.:format)                                                                          user#profile
+                                    update_collection GET      /collection/update/:id(.:format)                                                             collection#update
+                                          ahoy_engine          /ahoy                                                                                        Ahoy::Engine
+
+Routes for Ahoy::Engine:
+visits POST /visits(.:format) ahoy/visits#create
+events POST /events(.:format) ahoy/events#create
